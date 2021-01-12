@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <%- include('./partials/head'); %>
+</head>
+<body>
+<%- include('./partials/navbar'); %>
+<div class="container">
+    <h1>Features Page</h1>
+
+    <div id="app">
+        <form @submit.prevent="createServer">
+            <div class="mb-3">
+                <input class="form-control" type="text" v-model="name">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <div class="spinner-border" role="status" v-if="servers.length === 0">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <ul class="list-group" v-else>
+            <li class="list-group-item" v-for="server in servers" @click="remove(server.id)">
+                {{ server.name }}
+                <strong>{{ server.status }}</strong>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script src="https://unpkg.com/vue@next"></script>
+<script src="/app.js"></script>
+</body>
+</html>
